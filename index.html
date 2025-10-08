@@ -3,68 +3,103 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Straits — Minimal Night Theme</title>
+<title>Straits with Smartness </title>
 <style>
-  body {
-    margin:0;
-    font-family: "Noto Sans Bengali","Segoe UI",sans-serif;
-    background: radial-gradient(circle at top, #0a0a1a, #000);
-    color:#f2f6ff;
-    overflow:hidden;
-  }
-  .stars {
-    position:fixed; inset:0; z-index:-1;
-  }
-  .star {
-    position:absolute; width:2px; height:2px;
-    background:#fff; border-radius:50%;
-    opacity:.8; animation: twinkle 2s infinite alternate;
-  }
-  @keyframes twinkle { from{opacity:.3} to{opacity:1} }
+body {
+  margin:0;
+  font-family:"Noto Sans Bengali","Segoe UI",sans-serif;
+  background: radial-gradient(circle at top, #0a0a1a, #000);
+  color:#f2f6ff;
+  overflow:hidden;
+}
+.stars {
+  position:fixed; inset:0; z-index:-1;
+}
+.star {
+  position:absolute; width:2px; height:2px;
+  background:#fff; border-radius:50%;
+  opacity:.8; animation: twinkle 2s infinite alternate;
+}
+@keyframes twinkle { from{opacity:.3} to{opacity:1} }
 
-  .slides {
-    height:100%; transition:transform .8s ease;
-  }
-  .slide {
-    height:100vh; display:flex; flex-direction:column;
-    justify-content:center; align-items:center;
-    padding:20px; box-sizing:border-box;
-    text-align:center;
-  }
-  h1 {
-    font-size: clamp(28px,6vw,52px);
-    margin:0 0 20px 0;
-    color:#7dd3fc; /* soft cyan accent */
-  }
-  p {
-    font-size: clamp(18px,3.5vw,26px);
-    line-height:1.6;
-    margin:10px 0;
-    max-width:800px;
-  }
-  .meta { font-size: clamp(16px,3vw,22px); margin-top:14px; }
+.slides {
+  display:flex;
+  flex-direction:column;
+  height:100vh;
+  transition:transform .8s ease;
+}
+.slide {
+  height:100vh; display:flex; flex-direction:column;
+  justify-content:center; align-items:center;
+  padding:20px; box-sizing:border-box;
+  text-align:center;
+  flex-shrink:0;
+  background: rgba(0,0,0,0.2);
+}
+h1 {
+  font-size: clamp(28px,6vw,52px);
+  margin:0 0 20px 0;
+  color:#7dd3fc;
+}
+p {
+  font-size: clamp(18px,3.5vw,26px);
+  line-height:1.6;
+  margin:10px 0;
+  max-width:800px;
+}
+.meta { font-size: clamp(16px,3vw,22px); margin-top:14px; }
+.map-btn {
+  margin-top:28px;
+  display:inline-block;
+  padding:14px 28px;
+  border-radius:999px;
+  font-size: clamp(18px,3.5vw,24px);
+  font-weight:600;
+  color:#dbeafe;
+  background: rgba(255,255,255,0.05);
+  border:1px solid rgba(125,211,252,0.25);
+  text-decoration:none;
+  transition: all .25s ease;
+}
+.map-btn:hover {
+  background: rgba(125,211,252,0.15);
+  color:#7dd3fc;
+  box-shadow:0 0 25px rgba(125,211,252,0.35);
+}
 
-  .map-btn {
-    margin-top:28px;
-    display:inline-block;
-    padding:14px 28px;
-    border-radius:999px;
-    font-size: clamp(18px,3.5vw,24px);
-    font-weight:600;
-    color:#dbeafe;
-    background: rgba(255,255,255,0.05);
-    border:1px solid rgba(125,211,252,0.25);
-    text-decoration:none;
-    transition: all .25s ease;
-  }
-  .map-btn:hover {
-    background: rgba(125,211,252,0.15);
-    color:#7dd3fc;
-    box-shadow:0 0 25px rgba(125,211,252,0.35);
-  }
+/* Floating Drag Knob */
+.drag-bar {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 60%;
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
+  z-index: 10;
+}
+.drag-knob {
+  width: 40px;
+  height: 40px;
+  background: rgba(125,211,252,0.6);
+  border-radius:50%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: grab;
+  box-shadow:0 0 15px #7dd3fc;
+  transition: background 0.2s ease, opacity 0.2s ease, top 0.2s ease;
+  opacity:0.8;
+}
+.drag-knob:active {
+  cursor: grabbing;
+  background: rgba(125,211,252,0.9);
+}
 </style>
 </head>
 <body>
+
 <div class="stars" id="stars"></div>
 
 <div class="slides" id="slides">
@@ -199,7 +234,7 @@
   তাইওয়ানের সাথে ফরমোজা করতে চায়।</p>
   <p class="meta"><b>সংযুক্ত:</b> দক্ষিণ চীন সাগর + পূর্ব চীন সাগর</p>
   <p class="meta"><b>পৃথক:</b> চীন - তাইওয়ান</p>
-  <a class="map-btn" href="https://maps.app.goo.gl/Mv1mWe3zJz3wZf7P6" target="_blank">🗺️ Google Maps</a>
+  <a class="map-btn" href="https://maps.app.goo.gl/S9kygQnze8AGTJHr5" target="_blank">🗺️ Google Maps</a>
 </section>
 
 <section class="slide">
@@ -257,39 +292,86 @@
 </section>
 </div>
 
+<!-- Floating Drag Bar -->
+<div class="drag-bar" id="dragBar">
+  <div class="drag-knob" id="dragKnob"></div>
+</div>
+
 <script>
 const slidesEl = document.getElementById("slides");
 const slides = document.querySelectorAll(".slide");
+const dragBar = document.getElementById("dragBar");
+const dragKnob = document.getElementById("dragKnob");
+
 let index = 0;
 let locked=false;
+let dragging=false;
 
-function update(){ slidesEl.style.transform=`translateY(-${index*100}vh)`; }
+// Update slide & knob
+function updateSlide() {
+  slidesEl.style.transform = `translateY(-${index*100}vh)`;
+  // Sync knob position with current index
+  const barHeight = dragBar.clientHeight;
+  const knobHeight = dragKnob.clientHeight;
+  dragKnob.style.top = `${index/barCount()*barHeight - knobHeight/2}px`;
+}
+function barCount(){ return slides.length; }
 
-function next(){ if(index<slides.length-1){index++;update();}}
-function prev(){ if(index>0){index--;update();}}
-
-// Scroll (scroll up → next, scroll down → prev)
-window.addEventListener("wheel",e=>{
-  if(locked) return;
+// Wheel navigation
+function wheelHandler(e){
+  if(locked || dragging) return; // Stop scroll during drag
   locked=true; setTimeout(()=>locked=false,900);
-  if(e.deltaY<0) next(); else if(e.deltaY>0) prev();
-},{passive:true});
+  e.deltaY>0?next():prev();
+}
+window.addEventListener("wheel", wheelHandler,{passive:true});
 
 // Touch swipe
 let startY=null;
 window.addEventListener("touchstart",e=>{
+  if(dragging) return;
   startY=e.touches[0].clientY;
 },{passive:true});
 window.addEventListener("touchend",e=>{
+  if(dragging) return;
   if(startY===null) return;
   let dy=e.changedTouches[0].clientY-startY;
-  if(Math.abs(dy)>40){
-    if(dy<0) next(); else prev();
-  }
+  if(Math.abs(dy)>40) dy<0?next():prev();
   startY=null;
 });
 
-// Stars
+// Circular next/prev
+function next(){ index = (index+1)%slides.length; updateSlide(); }
+function prev(){ index = (index-1+slides.length)%slides.length; updateSlide(); }
+
+// Drag knob
+dragKnob.addEventListener("mousedown",()=>dragging=true);
+window.addEventListener("mouseup",()=>dragging=false);
+window.addEventListener("mousemove", e=>{ if(dragging) handleDrag(e); });
+
+dragKnob.addEventListener("touchstart",()=>dragging=true,{passive:true});
+window.addEventListener("touchend",()=>dragging=false);
+window.addEventListener("touchmove", e=>{ if(dragging) handleDrag(e); },{passive:true});
+
+function handleDrag(e){
+  const rect = dragBar.getBoundingClientRect();
+  let clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  let pos = clientY - rect.top;
+  pos = Math.max(0, Math.min(rect.height, pos));
+  dragKnob.style.top = `${pos - dragKnob.clientHeight/2}px`;
+
+  // Change slide based on knob
+  let newIndex = Math.floor(pos / rect.height * slides.length);
+  newIndex = Math.min(slides.length-1,newIndex);
+  if(newIndex!==index){
+    index=newIndex;
+    updateSlide();
+  }
+}
+
+// Initialize knob at top
+updateSlide();
+
+// Stars background
 const stars=document.getElementById("stars");
 for(let i=0;i<80;i++){
   let s=document.createElement("div");
